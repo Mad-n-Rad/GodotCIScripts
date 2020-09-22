@@ -30,7 +30,7 @@ if [[ ! $(type -P godot)]]; then
 fi
 
 
-if [ ! -f "${TEMPLATES_PATH}/webassembly_release.zip ]; then
+if [ ! -f "${TEMPLATES_PATH}/webassembly_release.zip" ]; then
 	if [ ! -f ${TEMPLATES_FILENAME} ]; then
 		echo "Downloading templates..."
 		wget -q "${TEMPLATES_URL}"
