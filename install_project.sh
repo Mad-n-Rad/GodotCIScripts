@@ -6,9 +6,7 @@ set -e
 GIT_URL="https://github.com/Ludrak/ready_player_42.git"
 GIT_BRANCH="master"
 NAME="Game"
-VERSION="$(git describe || echo 0.0)"
-#DESTINATION="/srv/http/${NAME}/${BRANCH}/${VERSION}/index.html"
-DESTINATION="/${HOME}/build/${NAME}/${BRANCH}/${VERSION}"
+DESTINATION="/${HOME}/build/${NAME}/${BRANCH}/"
 
 echo "Updating yum..."
 sudo yum update -y
@@ -18,5 +16,9 @@ sudo yum install git -y
 
 mkdir -p "${DESTINATION}"
 
-git clone "${GIT_URL}" --branch "${GIT_BRANCH}" "${DESTINATION}"
-
+if [ -d ${DESTINATION} ]; then
+	cd "${DESTINATION}"
+	git pull
+else
+	git clone "${GIT_URL}" --branch "${GIT_BRANCH}" "${DESTINATION}"
+fi
