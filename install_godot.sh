@@ -44,6 +44,7 @@ if [ ! -f "${TEMPLATES_PATH}/${VERSION}.${CHANNEL}/web_assembly_release.zip" ]; 
 	mkdir -p "${TEMPLATES_PATH}"
 	TEMPLATES_DESTINATION="${TEMPLATES_PATH}/$(cat 'templates/version.txt')"
 	mv "templates"/* "${TEMPLATES_DESTINATION}"
+	rmdir "templates"
 fi
 
 echo "Done!"
