@@ -14,7 +14,7 @@ GODOT_URL="${BASE_URL}/${VERSION}/${GODOT_FILENAME}.zip"
 TEMPLATES_FILENAME="Godot_v${VERSION}-${CHANNEL}_export_templates.tpz"
 TEMPLATES_URL="${BASE_URL}/${VERSION}/${TEMPLATES_FILENAME}"
 
-INSTALL_PATH="/usr/bin/godot"
+INSTALL_PATH="${HOME}/.local/bin/godot"
 TEMPLATES_PATH="${HOME}/.local/share/godot/templates/${VERSION}.${CHANNEL}"
 
 if [ ! -f ${GODOT_FILENAME} ]; then
@@ -25,7 +25,7 @@ if [ ! -f ${GODOT_FILENAME} ]; then
 fi
 
 echo "Installing to '${INSTALL_PATH}'..."
-sudo install "${GODOT_FILENAME}" "${INSTALL_PATH}"
+sudo install -d "${GODOT_FILENAME}" "${INSTALL_PATH}"
 
 mkdir -p "${TEMPLATES_PATH}"
 
