@@ -39,7 +39,7 @@ if [ ! -f "${TEMPLATES_PATH}/${VERSION}.${CHANNEL}/web_assembly_release.zip" ]; 
 	echo "Installing templates to '${TEMPLATES_PATH}'..."
 	mkdir -p "templates"
 	cp "${TEMPLATES_FILENAME}" "templates.zip"
-	unzip -q "templates.zip" -d "templates"
+	unzip -q "templates.zip" 
 	rm "templates.zip"
 	mkdir -p "${TEMPLATES_PATH}"
 	TEMPLATES_DESTINATION="${TEMPLATES_PATH}/$(cat 'templates/version.txt')"
