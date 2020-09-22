@@ -17,7 +17,7 @@ fi
 
 mkdir -p "${DESTINATION}"
 
-if [ -d ${DESTINATION} ]; then
+if [ -d "${DESTINATION}/.git" ]; then
 	cd "${DESTINATION}"
 	git pull
 else
