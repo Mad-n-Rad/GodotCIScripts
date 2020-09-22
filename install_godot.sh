@@ -29,16 +29,19 @@ if [[ ! $(type -P godot)]]; then
 	install -D "${GODOT_FILENAME}" "${INSTALL_PATH}"
 fi
 
-mkdir -p "${TEMPLATES_PATH}"
 
-if [ ! -f ${TEMPLATES_FILENAME} ]; then
-	echo "Downloading templates..."
-	wget -q "${TEMPLATES_URL}"
+if [ ! -f "${TEMPLATES_PATH}/webassembly_release.zip ]; then
+	if [ ! -f ${TEMPLATES_FILENAME} ]; then
+		echo "Downloading templates..."
+		wget -q "${TEMPLATES_URL}"
+	fi
+	
+	echo "Installing templates to '${TEMPLATES_PATH}'..."
+	mkdir -p "${TEMPLATES_PATH}"
+	cp "${TEMPLATES_FILENAME}" "templates.zip"
+	unzip -q "templates.zip" -d ${TEMPLATES_PATH}
+	rm "templates.zip"
 fi
-
-echo "Installing templates to '${TEMPLATES_PATH}'..."
-cp "${TEMPLATES_FILENAME}" "${TEMPLATES_PATH}"
-# TODO: unzip
 
 echo "Done!"
 
