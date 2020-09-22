@@ -8,11 +8,12 @@ GIT_BRANCH="master"
 NAME="Game"
 DESTINATION="/${HOME}/build/${NAME}/${BRANCH}/"
 
-echo "Updating yum..."
-sudo yum update -y
-
-echo "Installing git..."
-sudo yum install git -y
+if [[ $(type -P git) ]]; then
+	echo "Updating yum..."
+	sudo yum update -y
+	echo "Installing git..."
+	sudo yum install git -y
+fi
 
 mkdir -p "${DESTINATION}"
 
