@@ -17,7 +17,7 @@ TEMPLATES_URL="${BASE_URL}/${VERSION}/${TEMPLATES_FILENAME}"
 INSTALL_PATH="${HOME}/.local/bin/godot"
 TEMPLATES_PATH="${HOME}/.local/share/godot/templates/${VERSION}.${CHANNEL}"
 
-if [[ ! $(type -P godot)]]; then
+if [[ ! $(type -P godot) ]]; then
 	if [ ! -f ${GODOT_FILENAME} ]; then
 		echo "Downloading ${GODOT_FILENAME}..."
 		wget -q "${GODOT_URL}"
