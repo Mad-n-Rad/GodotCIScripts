@@ -15,7 +15,7 @@ TEMPLATES_FILENAME="Godot_v${VERSION}-${CHANNEL}_export_templates.tpz"
 TEMPLATES_URL="${BASE_URL}/${VERSION}/${TEMPLATES_FILENAME}"
 
 INSTALL_PATH="${HOME}/.local/bin/godot"
-TEMPLATES_PATH="${HOME}/.local/share/godot/templates/${VERSION}.${CHANNEL}"
+TEMPLATES_PATH="${HOME}/.local/share/godot/templates"
 
 if [[ ! $(type -P godot) ]]; then
 	if [ ! -f ${GODOT_FILENAME} ]; then
@@ -30,17 +30,20 @@ if [[ ! $(type -P godot) ]]; then
 fi
 
 
-if [ ! -f "${TEMPLATES_PATH}/webassembly_release.zip" ]; then
+if [ ! -f "${TEMPLATES_PATH}/${VERSION}.${CHANNEL}/web_assembly_release.zip" ]; then
 	if [ ! -f ${TEMPLATES_FILENAME} ]; then
 		echo "Downloading templates..."
 		wget -q "${TEMPLATES_URL}"
 	fi
 	
 	echo "Installing templates to '${TEMPLATES_PATH}'..."
-	mkdir -p "${TEMPLATES_PATH}"
+	mkdir -p "templates"
 	cp "${TEMPLATES_FILENAME}" "templates.zip"
-	unzip -q "templates.zip" -d ${TEMPLATES_PATH}
+	unzip -q "templates.zip" -d "templates"
 	rm "templates.zip"
+	mkdir -p "${TEMPLATES_PATH}"
+	TEMPLATES_DESTINATION="${TEMPLATES_PATH}/$(cat 'templates/version.txt')"
+	mv "templates"/* "${TEMPLATES_DESTINATION}"
 fi
 
 echo "Done!"
