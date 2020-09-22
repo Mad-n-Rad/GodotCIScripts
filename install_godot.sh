@@ -17,15 +17,17 @@ TEMPLATES_URL="${BASE_URL}/${VERSION}/${TEMPLATES_FILENAME}"
 INSTALL_PATH="${HOME}/.local/bin/godot"
 TEMPLATES_PATH="${HOME}/.local/share/godot/templates/${VERSION}.${CHANNEL}"
 
-if [ ! -f ${GODOT_FILENAME} ]; then
-	echo "Downloading ${GODOT_FILENAME}..."
-	wget -q "${GODOT_URL}"
-	unzip -q "${GODOT_FILENAME}.zip"
-	rm "${GODOT_FILENAME}.zip"
-fi
+if [[ ! $(type -P godot)]]; then
+	if [ ! -f ${GODOT_FILENAME} ]; then
+		echo "Downloading ${GODOT_FILENAME}..."
+		wget -q "${GODOT_URL}"
+		unzip -q "${GODOT_FILENAME}.zip"
+		rm "${GODOT_FILENAME}.zip"
+	fi
 
-echo "Installing to '${INSTALL_PATH}'..."
-install -D "${GODOT_FILENAME}" "${INSTALL_PATH}"
+	echo "Installing godot to '${INSTALL_PATH}'..."
+	install -D "${GODOT_FILENAME}" "${INSTALL_PATH}"
+fi
 
 mkdir -p "${TEMPLATES_PATH}"
 
@@ -34,9 +36,9 @@ if [ ! -f ${TEMPLATES_FILENAME} ]; then
 	wget -q "${TEMPLATES_URL}"
 fi
 
-echo "Installing templates to ${TEMPLATES_PATH}"
-mv "${TEMPLATES_FILENAME}" "${TEMPLATES_PATH}"
+echo "Installing templates to '${TEMPLATES_PATH}'..."
+cp "${TEMPLATES_FILENAME}" "${TEMPLATES_PATH}"
+# TODO: unzip
 
 echo "Done!"
-rm "${GODOT_FILENAME}"
 
