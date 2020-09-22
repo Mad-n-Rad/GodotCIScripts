@@ -25,7 +25,7 @@ if [ ! -f ${GODOT_FILENAME} ]; then
 fi
 
 echo "Installing to '${INSTALL_PATH}'..."
-install -d "${GODOT_FILENAME}" "${INSTALL_PATH}"
+install -D "${GODOT_FILENAME}" "${INSTALL_PATH}"
 
 mkdir -p "${TEMPLATES_PATH}"
 
