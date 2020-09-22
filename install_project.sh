@@ -6,7 +6,7 @@ set -e
 GIT_URL="https://github.com/Ludrak/ready_player_42.git"
 GIT_BRANCH="master"
 NAME="Game"
-DESTINATION="/${HOME}/build/${NAME}/${BRANCH}/"
+DESTINATION="${HOME}/build/${NAME}/${BRANCH}/"
 
 if [[ ! $(type -P git) ]]; then
 	echo "Updating yum..."
